@@ -1,14 +1,13 @@
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+apiVersion: v1
+kind: Service
 metadata:
-  name: online-shop-monitor
+  name: online-shop-service
   labels:
-    release: monitoring
+    app: online-shop
 spec:
   selector:
-    matchLabels:
-      app: online-shop
-  endpoints:
-  - port: http
-    path: /metrics
-    interval: 15s
+    app: online-shop
+  ports:
+  - name: http   
+    port: 3000
+    targetPort: 3000
